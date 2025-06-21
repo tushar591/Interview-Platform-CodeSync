@@ -1,0 +1,6 @@
+{
+  "project": "frugal-partridge-755",
+  "experimental": {
+    "httpActions": true
+  }
+}
