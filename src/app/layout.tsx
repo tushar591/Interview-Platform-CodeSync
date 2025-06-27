@@ -5,6 +5,7 @@ import ConvexClerkProvider from "@/components/ui/providers/ConvexClerkProvider";
 import Navbar from "@/components/ui/Navbar";
 import { ThemeProvider } from "@/components/ui/providers/ThemeProvider";
 import { RedirectToSignIn, SignedIn, SignedOut, SignIn } from "@clerk/nextjs";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+          <Toaster>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -49,6 +51,7 @@ export default function RootLayout({
               <RedirectToSignIn />
             </SignedOut>
           </ThemeProvider>
+          </Toaster>
         </body>
       </html>
     </ConvexClerkProvider>

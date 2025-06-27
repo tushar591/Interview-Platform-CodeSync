@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./dialog";
 import { Button } from "./button";
 import { Input } from "./input";
+import useMeetingActions from "./MeetingActions";
 
 interface MeetingModalProps {
   isOpen: boolean;
@@ -12,6 +13,19 @@ interface MeetingModalProps {
 
 function MeetingModal({ isOpen, onClose, title, isJoinMeeting }: MeetingModalProps) {
   const [meetingUrl, setMeetingUrl] = useState("");
+ const { createInstantMeeting, joinMeeting } = useMeetingActions();
+
+  const handleStart = () => {
+    if (isJoinMeeting) {
+      const meetingId = meetingUrl.split("/").pop();
+      if (meetingId) joinMeeting(meetingId);
+    } else {
+      createInstantMeeting();
+    }
+
+    setMeetingUrl("");
+    onClose();
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -33,7 +47,7 @@ function MeetingModal({ isOpen, onClose, title, isJoinMeeting }: MeetingModalPro
             <Button variant="outline" onClick={onClose}>
               Cancel
             </Button>
-            <Button onClick={() => { }} disabled={isJoinMeeting && !meetingUrl.trim()}>
+            <Button onClick={handleStart} disabled={isJoinMeeting && !meetingUrl.trim()}>
               {isJoinMeeting ? "Join Meeting" : "Start Meeting"}
             </Button>
           </div>
