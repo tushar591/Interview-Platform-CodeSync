@@ -1,6 +1,8 @@
-import StreamVideoProvider from "@/components/ui/providers/StreamClientProvider";
+"use client";
 
-function Layout({ children }: { children: React.ReactNode }) {
+import StreamVideoProvider from "@/components/ui/providers/StreamClientProvider";
+import { ReactNode } from "react";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return <StreamVideoProvider>{children}</StreamVideoProvider>;
 }
-export default Layout;

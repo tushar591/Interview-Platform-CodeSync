@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { Loader2Icon } from "lucide-react";
 import MeetingModal from "@/components/ui/MeetingModal";
 
-export default function Home() {
+export default function HomePage() {
   const router = useRouter();
 
   const { isInterviewer, isCandidate, isLoading } = useUserRole();
