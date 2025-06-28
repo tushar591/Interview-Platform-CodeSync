@@ -1,4 +1,3 @@
-"use client";
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -31,12 +30,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ConvexClerkProvider>
-      <StreamClientProvider>
-        <html lang="en" suppressHydrationWarning>
-          <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-          >
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <ConvexClerkProvider>
+          <StreamClientProvider>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
@@ -56,9 +55,9 @@ export default function RootLayout({
               </SignedOut>
             </ThemeProvider>
             <Toaster />
-          </body>
-        </html>
-      </StreamClientProvider>
-    </ConvexClerkProvider>
+          </StreamClientProvider>
+        </ConvexClerkProvider>
+      </body>
+    </html>
   );
 }
