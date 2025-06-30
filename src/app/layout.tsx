@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import "@stream-io/video-react-sdk/dist/css/styles.css";
 import ConvexClerkProvider from "@/components/ui/providers/ConvexClerkProvider";
 import StreamClientProvider from "@/components/ui/providers/StreamClientProvider";
 import Navbar from "@/components/ui/Navbar";
