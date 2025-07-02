@@ -1,4 +1,3 @@
-
 "use client";
 
 import { ReactNode, useEffect, useState } from "react";
@@ -16,23 +15,41 @@ export default function StreamVideoProvider({ children }: Props) {
   const { user, isLoaded } = useUser();
 
   useEffect(() => {
-    if (!isLoaded || !user) return;
-   
-    console.log("🤖 Stream API Key:", process.env.NEXT_PUBLIC_STREAM_API_KEY);
-    const c = new StreamVideoClient({
-      apiKey: process.env.NEXT_PUBLIC_STREAM_API_KEY!,
-      user: {
-        id: user.id,
-        name: `${user.firstName || ""} ${user.lastName || ""}`.trim() || user.id,
-        image: user.imageUrl,
-      },
-      tokenProvider: streamTokenProvider,
-    });
+   // console.log("useEffect start:", { isLoaded, user });
+    if (!isLoaded || !user) {
+     // console.log(" Waiting for Clerk to load or sign in");
+      return;
+    }
+   // console.log("Clerk ready, initializing StreamVideoClient…");
 
-    setClient(c);
+    try {
+      const c = new StreamVideoClient({
+        apiKey: process.env.NEXT_PUBLIC_STREAM_API_KEY!,
+        user: {
+          id: user.id,
+          name:
+            `${user.firstName || ""} ${user.lastName || ""}`.trim() ||
+            user.id,
+          image: user.imageUrl,
+        },
+        tokenProvider: streamTokenProvider,
+      });
+      //console.log("Created StreamVideoClient:", c);
+      setClient(c);
+    } catch (err) {
+      console.error(" Error constructing StreamVideoClient:", err);
+    }
   }, [user, isLoaded]);
 
-  console.log("StreamVideoProvider initialized client:", client);
+  //console.log(" StreamVideoProvider render, client state is:", client);
+
+  if (!isLoaded) {
+    return <LoaderUI />;
+  }
+
+  if (!user) {
+    return <>{children}</>;
+  }
 
   if (!client) {
     return <LoaderUI />;
