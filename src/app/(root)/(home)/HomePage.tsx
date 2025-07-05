@@ -102,6 +102,7 @@ export default function HomePage() {
           </div>
         </>
       )}
+      <p className="mt-45 justify-center text-md text-muted-foreground text-center">Made with ❤️ by Tushar</p>
     </div>
   );
 }
