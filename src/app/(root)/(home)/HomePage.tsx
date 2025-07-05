@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2Icon } from "lucide-react";
 import MeetingModal from "@/components/ui/MeetingModal";
+import MeetingCard from "@/components/ui/MeetingCard";
 
 export default function HomePage() {
   const router = useRouter();
