@@ -4,6 +4,7 @@ import { CodeIcon } from "lucide-react";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import DasboardBtn from "./DashBoard";
 import { ModeToggle } from "./providers/ModeToggle";
+import AIMockInterviewButton from "./AIMockInterviewButton";
 
 function Navbar() {
   return (
@@ -23,6 +24,7 @@ function Navbar() {
         {/* RIGHT SIDE - ACTIONS */}
         <SignedIn>
           <div className="flex items-center space-x-4 ml-auto">
+            <AIMockInterviewButton />
             <DasboardBtn />
             <ModeToggle />
             <UserButton />
