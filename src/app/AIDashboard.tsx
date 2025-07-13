@@ -6,7 +6,7 @@ function AIDashboard() {
     return (
     <div>
       <h1>AI Interview</h1>
-      return <AIDashboard jobrole={jobrole} />
+      return <AIDashboard jobrole={jobrole}/>
     </div>
   );
 }

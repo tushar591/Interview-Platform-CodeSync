@@ -34,12 +34,8 @@ export default function Inputs() {
         </Button>
       </form>
 
-      {submittedRole ? (
+      {submittedRole && (
         <QuestionList jobrole={submittedRole} />
-      ) : (
-        <p className="text-center text-gray-500">
-          Please enter a job role above to start your mock interview.
-        </p>
       )}
     </div>
   );

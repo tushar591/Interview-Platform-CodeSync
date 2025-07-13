@@ -8,7 +8,7 @@ Based on the following inputs, generate **exactly 5** high‑quality interview q
 Job Title: {{jobTitle}}
 Job Description: {{jobDescription}}
 Interview Duration: {{duration}}
-Interview Type: {{type}}
+Interview Type: {{Behavioral/Technical/Problem Solving}}
 
 Your task:
 - Analyze the job description for responsibilities and skills.
@@ -28,7 +28,6 @@ export async function POST(req) {
   try {
     const { jobPosition, jobDescription, duration, type } = await req.json();
 
-
     const FINAL_PROMPT = QUESTION_PROMPT.replace("{{job Title}}", jobPosition).replace("{{jobDescription}}", jobDescription).replace("{{duration}}", duration).replace("{{type}}", type);
     const openai = new OpenAI({
       baseURL: "https://openrouter.ai/api/v1",
@@ -39,10 +38,10 @@ export async function POST(req) {
       model: "google/gemini-2.0-flash-exp:free",
       messages: [{ role: "user", content: FINAL_PROMPT }],
     });
-    console.log(completion.choices[0].message)
+    //console.log(completion.choices[0].message)
     return NextResponse.json(completion.choices[0].message);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
